@@ -1,51 +1,67 @@
 #include<stdio.h>
-type def struct{
+
+typedef struct{
     float length;
     float width;    
     float area;
-}Rectangle;
+} Rectangle;
 
-void input(int n,Rectangle rect[n]);
-void calculate_area(int n,Rectangle rect[n]);
-void largestarea(int n,Rectangle rect[n]);
-void output(int n,int largestarea,Rectangle rect[n]);
- int main(){
-    int n;
-    printf("enter no of rectangle:");
+void input(int n, Rectangle rect[n]);
+void calculate_area(int n, Rectangle rect[n]);
+int largestarea(int n, Rectangle rect[n]);
+void output(int n, int largestIndex, Rectangle rect[n]);
+
+int main(){
+    int n, largestIndex;
+
+    printf("enter no of rectangle: ");
     scanf("%d",&n);
-    Rectangle rect[n];
-    input(n,rect);
-    calculate_area(n,rect);
-    largestarea(n,rect);
-    output(n,rect);
-     return 0;
- }
 
- void input(int n,Rectangle rect[n]);{
-    for(int i;i<n;i++){
-        printf("enter length and width of rectangle %d:",i+1);
-        scanf("%f%f",&rect.length[i],&rect.width[i]);
-    }
- }
-void calculate_area(int n,Rectangle rect[n]);{
-    for(int i=0;i<n;i++){
-        rect.area[i]=rect.length[i]*rect.width[i];
+    Rectangle rect[n];
+
+    input(n, rect);
+    calculate_area(n, rect);
+    largestIndex = largestarea(n, rect);
+    output(n, largestIndex, rect);
+
+    return 0;
+}
+
+// FIXED: return type should be void
+void input(int n, Rectangle rect[n]){
+    for(int i = 0; i < n; i++){
+        printf("enter length and width of rectangle %d: ", i+1);
+        scanf("%f %f", &rect[i].length, &rect[i].width);
     }
 }
-void largestarea(int n,Rectangle rect[n]);{
-    int largestarea=0;
-    for(int i=0;i<n;i++){
-        if(rect.area[i]>rect.[largestarea])
-            largestarea=i;
+
+void calculate_area(int n, Rectangle rect[n]){
+    for(int i = 0; i < n; i++){
+        rect[i].area = rect[i].length * rect[i].width;
     }
-    return largestarea;
 }
-void output(int n,int largestarea,Rectangle rect[n]);{
+
+int largestarea(int n, Rectangle rect[n]){
+    int largestIndex = 0;
+
+    for(int i = 1; i < n; i++){
+        if(rect[i].area > rect[largestIndex].area){
+            largestIndex = i;
+        }
+    }
+    return largestIndex;
+}
+
+void output(int n, int largestIndex, Rectangle rect[n]){
     printf("\nAreas of all rectangles:\n");
-    for (int i = 0; i < n; i++) {
-        printf("Rectangle %d Area: %f\n",i + 1, rects[i].area);
+
+    for (int i = 0; i < n; i++){
+        printf("Rectangle %d Area: %f\n", i + 1, rect[i].area);
     }
+
     printf("\nRectangle with Largest Area:\n");
-    printf("Length=%f\nWidth=%f\nArea=%f", 
-            rects[largestIndex].length,rects[largestIndex].width, rects[largestIndex].area);
+    printf("Length = %f\nWidth = %f\nArea = %f\n",
+           rect[largestIndex].length,
+           rect[largestIndex].width,
+           rect[largestIndex].area);
 }
