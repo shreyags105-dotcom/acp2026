@@ -1,4 +1,4 @@
-. #include <stdio.h>
+ #include <stdio.h>
 void input(int n, float arr[n]);
 int find_max_index(int n, float arr[n]);
 void output(float arr[], int max_index);
