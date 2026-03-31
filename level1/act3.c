@@ -14,8 +14,8 @@ void output(ElectricityBill bill);
 int main() {
     ElectricityBill bill;
 
-    bill = input();
-    bill = calculate_bill(bill);
+    bill = ElectricityBill input();
+    bill =ElectricityBill calculate_bill(bill);
     output(bill);
 
     return 0;
@@ -26,18 +26,22 @@ ElectricityBill input() {
     ElectricityBill bill;
 
     printf("Enter units consumed:\n");
-    // TODO: read units using scanf
+    scanf("%d",&bill.units);// TODO: read units using scanf
 
     printf("Enter rate per unit:\n");
-    // TODO: read rate using scanf
+    scanf("%f",&bill.rate); // TODO: read rate using scanf
 
     return bill;
 }
 
 // Function to calculate bill
 ElectricityBill calculate_bill(ElectricityBill bill) {
-
-    // TODO: if units < 50 then bill = 0
+  
+    if (bill.units<50){}
+        bill.total_bill=0;
+}else{}
+        bill.total_bill=bill.units*bill.rate;   
+ } // TODO: if units < 50 then bill = 0
     // TODO: else calculate bill = units * rate
 
     return bill;
